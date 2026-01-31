@@ -1,13 +1,13 @@
 [build]
-  publish = "www.muenchen.de"
+  publish = "."
   command = "echo 'Static site - no build needed'"
 
 [build.environment]
   NODE_VERSION = "18"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/site/*"
+  to = "/www.muenchen.de/:splat"
   status = 200
 
 [[headers]]

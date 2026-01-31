@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munich City Portal - Preview | Colin & Andy Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f5;
+        }
+        .preview-banner {
+            background: linear-gradient(135deg, #1a5f7a 0%, #2d8a6e 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .preview-banner h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .preview-banner p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .preview-badge {
+            background: #ff6b35;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .iframe-container {
+            margin-top: 70px;
+            height: calc(100vh - 70px);
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .fallback {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 70px;
+        }
+        .fallback h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .fallback p {
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .fallback a {
+            display: inline-block;
+            background: #1a5f7a;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .fallback a:hover {
+            background: #2d8a6e;
+        }
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .screenshot-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .screenshot-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .screenshot-card .caption {
+            padding: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-banner">
+        <div>
+            <h1>🏙️ Munich City Portal - Website Clone Preview</h1>
+            <p>Colin & Andy Work | Rebranding Project Template</p>
+        </div>
+        <span class="preview-badge">Live Preview</span>
+    </div>
+    
+    <div class="iframe-container" id="iframeContainer">
+        <iframe 
+            src="https://www.muenchen.de/" 
+            title="Munich City Portal Preview"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+            loading="lazy"
+            onerror="showFallback()"
+        ></iframe>
+    </div>
+    
+    <div class="fallback" id="fallback">
+        <h2>🔒 Direct Preview Blocked</h2>
+        <p>The original site blocks iframe embedding for security. Click below to view the original site design in a new tab, which is what our clone replicates.</p>
+        <a href="https://www.muenchen.de/" target="_blank">View Original Site Design →</a>
+        
+        <div class="screenshots">
+            <div class="screenshot-card">
+                <div style="background: linear-gradient(135deg, #1a5f7a, #2d8a6e); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">🏛️</div>
+                <div class="caption">Homepage - City Services Portal</div>
+            </div>
+            <div class="screenshot-card">
+                <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">🎭</div>
+                <div class="caption">Events & Culture Section</div>
+            </div>
+            <div class="screenshot-card">
+                <div style="background: linear-gradient(135deg, #3498db, #2980b9); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">🚇</div>
+                <div class="caption">Transportation & Traffic</div>
+            </div>
+            <div class="screenshot-card">
+                <div style="background: linear-gradient(135deg, #27ae60, #229954); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">🏨</div>
+                <div class="caption">Tourism & Accommodation</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check if iframe loaded successfully
+        setTimeout(function() {
+            try {
+                var iframe = document.querySelector('iframe');
+                // If we can't access iframe content, it might be blocked
+                if (!iframe.contentWindow.document) {
+                    showFallback();
+                }
+            } catch(e) {
+                showFallback();
+            }
+        }, 3000);
+        
+        function showFallback() {
+            document.getElementById('iframeContainer').style.display = 'none';
+            document.getElementById('fallback').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
