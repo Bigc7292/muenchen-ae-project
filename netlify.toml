@@ -1,5 +1,5 @@
 [build]
-  publish = "."
+  publish = "www.muenchen.de"
   command = "echo 'Static site - no build needed'"
 
 [build.environment]
