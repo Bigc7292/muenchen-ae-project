@@ -1,715 +1,103 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>München City Portal - Preview | Colin & Andy Project</title>
-    
+    <title>Dubai City Portal - Preview | Colin & Andy Project</title>
     <style>
-        :root {
-            --primary-color: #003366;
-            --secondary-color: #0066cc;
-            --accent-color: #ffcc00;
-            --text-color: #333;
-            --bg-light: #f5f5f5;
-            --white: #fff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-        }
-        
-        /* Preview Banner */
-        .preview-banner {
-            background: linear-gradient(135deg, #1a5f7a 0%, #2d8a6e 100%);
-            color: white;
-            padding: 12px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 10000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        .preview-banner h1 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .preview-banner p {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-        
-        .preview-badge {
-            background: #ff6b35;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        
-        .main-content {
-            margin-top: 50px;
-        }
-        
-        /* Header */
-        .site-header {
-            background: var(--white);
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 50px;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #003366, #0066cc);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .logo-text span {
-            color: var(--secondary-color);
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            padding: 10px 0;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--secondary-color);
-            border-bottom-color: var(--secondary-color);
-        }
-        
-        .header-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .search-btn, .lang-btn {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        
-        .search-btn:hover, .lang-btn:hover {
-            background: var(--bg-light);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #003366 0%, #0066cc 50%, #00a3cc 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
-            opacity: 0.3;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-        
-        .search-box {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 18px 25px;
-            border: none;
-            font-size: 16px;
-            outline: none;
-        }
-        
-        .search-box button {
-            background: var(--accent-color);
-            border: none;
-            padding: 18px 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .search-box button:hover {
-            background: #e6b800;
-        }
-        
-        /* Quick Links */
-        .quick-links {
-            padding: 60px 20px;
-            background: var(--bg-light);
-        }
-        
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-        }
-        
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .link-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        
-        .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .link-card-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-        
-        .link-card h3 {
-            font-size: 18px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .link-card p {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        /* News Section */
-        .news-section {
-            padding: 60px 20px;
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .news-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        
-        .news-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 48px;
-        }
-        
-        .news-content {
-            padding: 25px;
-        }
-        
-        .news-date {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 10px;
-        }
-        
-        .news-card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .news-card p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* Events Section */
-        .events-section {
-            padding: 60px 20px;
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .events-section .section-title {
-            color: white;
-        }
-        
-        .events-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .event-item {
-            display: flex;
-            gap: 20px;
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 12px;
-            align-items: center;
-        }
-        
-        .event-date-box {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            min-width: 80px;
-        }
-        
-        .event-day {
-            font-size: 28px;
-            font-weight: bold;
-        }
-        
-        .event-month {
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-        
-        .event-info h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .event-info p {
-            opacity: 0.8;
-            font-size: 14px;
-        }
-        
-        /* Footer */
-        .site-footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 60px 20px 30px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
-        }
-        
-        .footer-col h4 {
-            font-size: 16px;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        
-        .footer-col a:hover {
-            color: white;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 14px;
-            opacity: 0.7;
-        }
-        
-        /* Language Selector */
-        .lang-selector {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 10px 15px;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-        }
-        
-        .lang-selector button {
-            background: none;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 15px;
-            font-size: 12px;
-            transition: background 0.3s;
-        }
-        
-        .lang-selector button:hover,
-        .lang-selector button.active {
-            background: var(--bg-light);
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .nav-menu {
-                display: none;
-            }
-            
-            .preview-banner {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-        }
+        :root { --dubai-blue: #00205B; --dubai-gold: #C4A35A; --text-color: #333; --bg-light: #f5f5f5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: var(--text-color); }
+        .preview-banner { background: linear-gradient(135deg, #00205B, #C4A35A); color: white; padding: 12px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; right: 0; z-index: 10000; }
+        .preview-banner h1 { font-size: 16px; }
+        .preview-badge { background: #C4A35A; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold; color: #00205B; }
+        .main-content { margin-top: 50px; }
+        .site-header { background: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 50px; z-index: 1000; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 55px; height: 55px; background: linear-gradient(135deg, #00205B, #C4A35A); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 26px; font-weight: bold; }
+        .logo-text { font-size: 26px; font-weight: 700; color: var(--dubai-blue); }
+        .logo-text span { color: var(--dubai-gold); }
+        .nav-menu { display: flex; gap: 30px; list-style: none; }
+        .nav-menu a { text-decoration: none; color: var(--text-color); font-weight: 500; }
+        .nav-menu a:hover { color: var(--dubai-gold); }
+        .header-actions { display: flex; gap: 15px; }
+        .search-btn, .lang-btn { background: none; border: 2px solid var(--dubai-blue); font-size: 14px; cursor: pointer; padding: 10px 20px; border-radius: 25px; color: var(--dubai-blue); }
+        .search-btn:hover, .lang-btn:hover { background: var(--dubai-blue); color: white; }
+        .hero { position: relative; height: 600px; overflow: hidden; }
+        .hero-image { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(0,32,91,0.7), rgba(196,163,90,0.4)); display: flex; align-items: center; justify-content: center; }
+        .hero-content { text-align: center; color: white; max-width: 800px; padding: 20px; }
+        .hero h1 { font-size: 56px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero p { font-size: 22px; margin-bottom: 30px; }
+        .search-box { display: flex; max-width: 600px; margin: 0 auto; background: white; border-radius: 50px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .search-box input { flex: 1; padding: 18px 25px; border: none; font-size: 16px; outline: none; }
+        .search-box button { background: var(--dubai-gold); border: none; padding: 18px 35px; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--dubai-blue); }
+        .featured-section { padding: 60px 20px; background: var(--bg-light); }
+        .section-container { max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 36px; margin-bottom: 40px; color: var(--dubai-blue); }
+        .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .featured-card { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer; height: 300px; }
+        .featured-card:hover { transform: translateY(-8px); }
+        .featured-card img { width: 100%; height: 100%; object-fit: cover; }
+        .featured-card .card-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,32,91,0.9)); padding: 30px 20px 20px; color: white; }
+        .featured-card h3 { font-size: 20px; margin-bottom: 5px; }
+        .featured-card p { font-size: 14px; opacity: 0.9; }
+        .quick-links { padding: 60px 20px; }
+        .links-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .link-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s; cursor: pointer; }
+        .link-card:hover { transform: translateY(-5px); }
+        .link-card-image { height: 180px; overflow: hidden; }
+        .link-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .link-card:hover .link-card-image img { transform: scale(1.1); }
+        .link-card-content { padding: 20px; }
+        .link-card h3 { font-size: 18px; color: var(--dubai-blue); margin-bottom: 8px; }
+        .link-card p { font-size: 14px; color: #666; }
+        .news-section { padding: 60px 20px; background: var(--bg-light); }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .news-image { height: 220px; overflow: hidden; }
+        .news-image img { width: 100%; height: 100%; object-fit: cover; }
+        .news-content { padding: 25px; }
+        .news-date { font-size: 12px; color: var(--dubai-gold); margin-bottom: 10px; font-weight: 600; }
+        .news-card h3 { font-size: 20px; margin-bottom: 10px; color: var(--dubai-blue); }
+        .news-card p { font-size: 14px; color: #666; }
+        .events-section { padding: 60px 20px; background: var(--dubai-blue); color: white; }
+        .events-section .section-title { color: white; }
+        .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .event-card { background: rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; }
+        .event-image { height: 180px; overflow: hidden; }
+        .event-image img { width: 100%; height: 100%; object-fit: cover; }
+        .event-content { padding: 20px; }
+        .event-date { display: inline-block; background: var(--dubai-gold); color: var(--dubai-blue); padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
+        .event-card h4 { font-size: 18px; margin-bottom: 8px; }
+        .event-card p { opacity: 0.8; font-size: 14px; }
+        .site-footer { background: #0a1628; color: white; padding: 60px 20px 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1400px; margin: 0 auto 40px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: var(--dubai-gold); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; }
+        .footer-col a:hover { color: var(--dubai-gold); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; opacity: 0.7; max-width: 1400px; margin: 0 auto; }
+        .lang-selector { position: fixed; bottom: 20px; right: 20px; background: white; padding: 10px 15px; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; gap: 10px; z-index: 1000; }
+        .lang-selector button { background: none; border: none; padding: 5px 12px; cursor: pointer; border-radius: 15px; font-size: 12px; font-weight: 500; }
+        .lang-selector button:hover, .lang-selector button.active { background: var(--dubai-gold); color: var(--dubai-blue); }
+        @media (max-width: 1024px) { .featured-grid, .links-grid, .news-grid, .events-grid, .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .hero h1 { font-size: 36px; } .nav-menu { display: none; } .featured-grid, .links-grid, .news-grid, .events-grid, .footer-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- Preview Banner -->
-    <div class="preview-banner">
-        <div>
-            <h1>🏙️ Munich City Portal - Website Clone Preview</h1>
-            <p>Colin & Andy Work | Rebranding Project Template</p>
-        </div>
-        <span class="preview-badge">✓ Live Preview</span>
-    </div>
-    
+    <div class="preview-banner"><div><h1>🏙️ Dubai City Portal - Website Clone Preview (.ae Domain Ready)</h1><p>Colin & Andy Work | Rebranding Project - Based on muenchen.de</p></div><span class="preview-badge">✓ LIVE PREVIEW</span></div>
     <div class="main-content">
-        <!-- Header -->
-        <header class="site-header">
-            <div class="header-container">
-                <div class="logo">
-                    <div class="logo-icon">M</div>
-                    <div class="logo-text">münchen<span>.de</span></div>
-                </div>
-                
-                <nav>
-                    <ul class="nav-menu">
-                        <li><a href="#">Leben</a></li>
-                        <li><a href="#">Freizeit</a></li>
-                        <li><a href="#">Sehenswürdigkeiten</a></li>
-                        <li><a href="#">Veranstaltungen</a></li>
-                        <li><a href="#">Rathaus</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="header-actions">
-                    <button class="search-btn">🔍</button>
-                    <button class="lang-btn">🌐</button>
-                </div>
-            </div>
-        </header>
-        
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Willkommen in München</h1>
-                <p>Das offizielle Stadtportal - Ihr Wegweiser für Leben, Freizeit und Tourismus</p>
-                
-                <div class="search-box">
-                    <input type="text" placeholder="Was suchen Sie?">
-                    <button>Suchen</button>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Quick Links -->
-        <section class="quick-links">
-            <div class="section-container">
-                <h2 class="section-title">Schnellzugriff</h2>
-                
-                <div class="links-grid">
-                    <div class="link-card">
-                        <div class="link-card-icon">🏛️</div>
-                        <h3>Rathaus & Politik</h3>
-                        <p>Bürgerservice, Ämter und politische Informationen</p>
-                    </div>
-                    
-                    <div class="link-card">
-                        <div class="link-card-icon">🚇</div>
-                        <h3>Verkehr & Mobilität</h3>
-                        <p>MVV, Parken, Radwege und aktuelle Verkehrslage</p>
-                    </div>
-                    
-                    <div class="link-card">
-                        <div class="link-card-icon">🎭</div>
-                        <h3>Kultur & Freizeit</h3>
-                        <p>Museen, Theater, Sport und Erholung</p>
-                    </div>
-                    
-                    <div class="link-card">
-                        <div class="link-card-icon">🏨</div>
-                        <h3>Tourismus</h3>
-                        <p>Hotels, Sehenswürdigkeiten und Stadtführungen</p>
-                    </div>
-                    
-                    <div class="link-card">
-                        <div class="link-card-icon">📋</div>
-                        <h3>Bürgerservice</h3>
-                        <p>Anträge, Formulare und Online-Dienste</p>
-                    </div>
-                    
-                    <div class="link-card">
-                        <div class="link-card-icon">🏠</div>
-                        <h3>Wohnen</h3>
-                        <p>Wohnungsmarkt, Mieten und Bauen</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- News Section -->
-        <section class="news-section">
-            <div class="section-container">
-                <h2 class="section-title">Aktuelle Nachrichten</h2>
-                
-                <div class="news-grid">
-                    <article class="news-card">
-                        <div class="news-image">📰</div>
-                        <div class="news-content">
-                            <div class="news-date">31. Januar 2026</div>
-                            <h3>Neue Mobilitätsstrategie für München</h3>
-                            <p>Die Stadt München präsentiert innovative Konzepte für nachhaltige Mobilität und Verkehrsplanung.</p>
-                        </div>
-                    </article>
-                    
-                    <article class="news-card">
-                        <div class="news-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🎉</div>
-                        <div class="news-content">
-                            <div class="news-date">30. Januar 2026</div>
-                            <h3>Kulturprogramm Frühjahr 2026</h3>
-                            <p>Entdecken Sie das vielfältige Kulturangebot der Stadt mit Ausstellungen, Konzerten und Theater.</p>
-                        </div>
-                    </article>
-                    
-                    <article class="news-card">
-                        <div class="news-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🌳</div>
-                        <div class="news-content">
-                            <div class="news-date">29. Januar 2026</div>
-                            <h3>Grüne Stadtentwicklung</h3>
-                            <p>München investiert in neue Parks und Grünflächen für eine lebenswerte Zukunft.</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Events Section -->
-        <section class="events-section">
-            <div class="section-container">
-                <h2 class="section-title">Veranstaltungen</h2>
-                
-                <div class="events-list">
-                    <div class="event-item">
-                        <div class="event-date-box">
-                            <div class="event-day">15</div>
-                            <div class="event-month">Feb</div>
-                        </div>
-                        <div class="event-info">
-                            <h4>Münchner Faschingsumzug</h4>
-                            <p>Traditioneller Faschingsumzug durch die Innenstadt</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date-box">
-                            <div class="event-day">22</div>
-                            <div class="event-month">Feb</div>
-                        </div>
-                        <div class="event-info">
-                            <h4>Starkbierfest</h4>
-                            <p>Die fünfte Jahreszeit auf dem Nockherberg</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date-box">
-                            <div class="event-day">01</div>
-                            <div class="event-month">Mär</div>
-                        </div>
-                        <div class="event-info">
-                            <h4>Frühlingsfest</h4>
-                            <p>Das kleine Oktoberfest auf der Theresienwiese</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="site-footer">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Kontakt</h4>
-                    <ul>
-                        <li><a href="#">Impressum</a></li>
-                        <li><a href="#">Datenschutz</a></li>
-                        <li><a href="#">Barrierefreiheit</a></li>
-                        <li><a href="#">Kontaktformular</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Service</h4>
-                    <ul>
-                        <li><a href="#">Bürgertelefon</a></li>
-                        <li><a href="#">Online-Terminbuchung</a></li>
-                        <li><a href="#">Behördenfinder</a></li>
-                        <li><a href="#">Stadtplan</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Themen</h4>
-                    <ul>
-                        <li><a href="#">Arbeit & Wirtschaft</a></li>
-                        <li><a href="#">Bildung & Soziales</a></li>
-                        <li><a href="#">Umwelt & Gesundheit</a></li>
-                        <li><a href="#">Planen & Bauen</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Folgen Sie uns</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter / X</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">YouTube</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2026 Landeshauptstadt München - Clone Preview for Colin & Andy Project</p>
-            </div>
-        </footer>
+        <header class="site-header"><div class="header-container"><div class="logo"><div class="logo-icon">D</div><div class="logo-text">dubai<span>.ae</span></div></div><nav><ul class="nav-menu"><li><a href="#">Government</a></li><li><a href="#">Events</a></li><li><a href="#">Tourism</a></li><li><a href="#">Hotels</a></li><li><a href="#">Transport</a></li><li><a href="#">Business</a></li></ul></nav><div class="header-actions"><button class="search-btn">🔍 Search</button><button class="lang-btn">العربية</button></div></div></header>
+        <section class="hero"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="Dubai Skyline" class="hero-image"><div class="hero-overlay"><div class="hero-content"><h1>Welcome to Dubai</h1><p>The Official City Portal - Your Guide to Living, Leisure and Tourism</p><div class="search-box"><input type="text" placeholder="What are you looking for?"><button>Search</button></div></div></div></section>
+        <section class="featured-section"><div class="section-container"><h2 class="section-title">Discover Dubai</h2><div class="featured-grid"><div class="featured-card"><img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80" alt="Burj Khalifa"><div class="card-overlay"><h3>Burj Khalifa</h3><p>World's tallest building</p></div></div><div class="featured-card"><img src="https://images.unsplash.com/photo-1597659840241-37e2b9c2f55f?w=600&q=80" alt="Dubai Marina"><div class="card-overlay"><h3>Dubai Marina</h3><p>Waterfront living at its finest</p></div></div><div class="featured-card"><img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80" alt="Palm Jumeirah"><div class="card-overlay"><h3>Palm Jumeirah</h3><p>Iconic man-made island</p></div></div></div></div></section>
+        <section class="quick-links"><div class="section-container"><h2 class="section-title">Quick Access</h2><div class="links-grid"><div class="link-card"><div class="link-card-image"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80" alt="Government"></div><div class="link-card-content"><h3>Government Services</h3><p>Access official documents, permits, and public services</p></div></div><div class="link-card"><div class="link-card-image"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=400&q=80" alt="Transport"></div><div class="link-card-content"><h3>Transport & Mobility</h3><p>Metro, buses, taxis, and traffic information</p></div></div><div class="link-card"><div class="link-card-image"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400&q=80" alt="Hotels"></div><div class="link-card-content"><h3>Hotels & Accommodation</h3><p>Find the perfect stay for your visit</p></div></div><div class="link-card"><div class="link-card-image"><img src="https://images.unsplash.com/photo-1533395427226-788cee25cc7b?w=400&q=80" alt="Culture"></div><div class="link-card-content"><h3>Culture & Heritage</h3><p>Museums, art galleries, and cultural events</p></div></div></div></div></section>
+        <section class="news-section"><div class="section-container"><h2 class="section-title">Latest News</h2><div class="news-grid"><article class="news-card"><div class="news-image"><img src="https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80" alt="Dubai News"></div><div class="news-content"><div class="news-date">January 31, 2026</div><h3>Dubai Announces New Smart City Initiative</h3><p>The city unveils innovative plans for sustainable urban development.</p></div></article><article class="news-card"><div class="news-image"><img src="https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=600&q=80" alt="Tourism"></div><div class="news-content"><div class="news-date">January 30, 2026</div><h3>Record Tourism Numbers Expected</h3><p>Dubai prepares for unprecedented visitor numbers with new attractions.</p></div></article><article class="news-card"><div class="news-image"><img src="https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=600&q=80" alt="Business"></div><div class="news-content"><div class="news-date">January 29, 2026</div><h3>New Business Hub Opens in DIFC</h3><p>State-of-the-art facilities welcome international companies.</p></div></article></div></div></section>
+        <section class="events-section"><div class="section-container"><h2 class="section-title">Upcoming Events</h2><div class="events-grid"><div class="event-card"><div class="event-image"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80" alt="Event"></div><div class="event-content"><span class="event-date">FEB 15-20</span><h4>Dubai Shopping Festival</h4><p>The world's largest shopping and entertainment event</p></div></div><div class="event-card"><div class="event-image"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&q=80" alt="Concert"></div><div class="event-content"><span class="event-date">MAR 1-3</span><h4>Dubai Jazz Festival</h4><p>International artists perform at Media City</p></div></div><div class="event-card"><div class="event-image"><img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&q=80" alt="Food"></div><div class="event-content"><span class="event-date">MAR 10-25</span><h4>Dubai Food Festival</h4><p>Culinary experiences from around the world</p></div></div></div></div></section>
+        <footer class="site-footer"><div class="footer-grid"><div class="footer-col"><h4>Contact</h4><ul><li><a href="#">Imprint</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Contact Form</a></li></ul></div><div class="footer-col"><h4>Services</h4><ul><li><a href="#">Citizen Hotline</a></li><li><a href="#">Online Appointments</a></li><li><a href="#">Service Finder</a></li><li><a href="#">City Map</a></li></ul></div><div class="footer-col"><h4>Topics</h4><ul><li><a href="#">Business & Economy</a></li><li><a href="#">Education & Social</a></li><li><a href="#">Environment & Health</a></li><li><a href="#">Planning & Construction</a></li></ul></div><div class="footer-col"><h4>Follow Us</h4><ul><li><a href="#">Facebook</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Government of Dubai - Clone Preview for Colin & Andy Project | Ready for .ae Domain</p></div></footer>
     </div>
-    
-    <!-- Language Selector -->
-    <div class="lang-selector">
-        <button class="active">DE</button>
-        <button>EN</button>
-        <button>FR</button>
-        <button>ES</button>
-    </div>
+    <div class="lang-selector"><button class="active">EN</button><button>العربية</button><button>中文</button><button>हिंदी</button></div>
 </body>
 </html>
