@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # Node.js API Server
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: city-portal-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=city_portal
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD:-changeme}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=${JWT_SECRET:-change-this-in-production}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-change-this-refresh-secret}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - city-portal-network
+    volumes:
+      - ../logs:/app/logs
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: city-portal-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=city_portal
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - city-portal-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: city-portal-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - city-portal-network
+
+  # Nginx Reverse Proxy (Optional - for production)
+  nginx:
+    image: nginx:alpine
+    container_name: city-portal-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../www.muenchen.de:/var/www/html:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - api
+    networks:
+      - city-portal-network
+
+networks:
+  city-portal-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

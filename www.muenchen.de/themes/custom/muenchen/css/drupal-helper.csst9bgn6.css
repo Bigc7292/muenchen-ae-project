@@ -1,0 +1,29 @@
+/* set no sticky header, if user is logged in */
+
+.user--logged-in .m-page-header--is-fixed {
+  position: relative;
+}
+
+.user--logged-in .site {
+  padding-top: 39px;
+}
+
+.toolbar-oriented .toolbar-bar {
+  z-index: 2000;
+}
+
+.toolbar .toolbar-oriented {
+  z-index: 99999999 !important;
+}
+
+#toolbar-administration {
+  z-index: 99999999 !important;
+}
+
+.fb-post {
+  height:600px !important;
+}
+
+.fb-post span iframe {
+  height:600px !important;
+}

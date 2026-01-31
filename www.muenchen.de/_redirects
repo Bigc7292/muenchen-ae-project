@@ -1,0 +1,14 @@
+# Netlify redirects for SPA routing
+# Redirect all requests to index.html for client-side routing
+
+# Language redirects
+/en/*    /en/index.html    200
+/fr/*    /fr/index.html    200
+/it/*    /it/index.html    200
+/es/*    /es/index.html    200
+/ru/*    /ru/index.html    200
+/ar/*    /ar/index.html    200
+/zh-hans/*    /zh-hans/index.html    200
+
+# Default fallback
+/*    /index.html    200
